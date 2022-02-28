@@ -1,11 +1,13 @@
-const unknownPhone =(idName,displayBlock)  =>{
+//reer messeage
+const errorMessage =(idName,displayBlock)  =>{
     document.getElementById(idName).style.display= displayBlock
 }
-
+//input value text
 const InputValue = () => {
     const searchInput = document.getElementById('search-input').value
     if(searchInput == ''){
-        unknownPhone('scarch-phone-name','block')
+        errorMessage('scarch-phone-name','block')
+        errorMessage('no-phone','none')
     }
     else{
         searchBtn(searchInput)
@@ -13,6 +15,7 @@ const InputValue = () => {
     }
 
 }
+//searcg button
 const searchBtn = (searchText) =>{
     // const searchBtn = document.getElementById('search-btn')
 
@@ -21,16 +24,16 @@ const searchBtn = (searchText) =>{
     .then(res => res.json())
     .then(phone => displayPhone(phone.data))
 
-    unknownPhone('scarch-phone-name','none')
-    unknownPhone('no-phone','none')
+    errorMessage('scarch-phone-name','none')
+    errorMessage('no-phone','none')
  
 }
-
+//show display content
 const displayPhone = phones => {
     const cardContainer = document.getElementById('card-container')
     cardContainer.innerHTML='';
 if(phones.length==0){
-    unknownPhone('no-phone','block')
+    errorMessage('no-phone','block')
 }
 else{
     phones?.forEach(phone => {
@@ -53,9 +56,8 @@ else{
      });
 }
 
- 
 }
-
+//load phone detail api
 const loadPhoneDetail = idName =>{
   const url =`https://openapi.programming-hero.com/api/phone/${idName}`
   fetch(url)
@@ -63,7 +65,7 @@ const loadPhoneDetail = idName =>{
   .then(detail => displayPhoneDetail(detail.data))
 
 }
-
+//desplay phone detail content
 const displayPhoneDetail = detalils=> {
     const detailContainer = document.getElementById('detail-container')
     detailContainer.textContent = ''
@@ -89,7 +91,7 @@ const div= document.createElement('div')
        USB  : ${others.USB}<br>
        WLAN : ${others.WLAN}
         </p>
-        <h3 class="text-center">RELEASDATE : ${detalils.releaseDate ? detalils.releaseDate : 'NOT AVLAVAL'}</h3>
+        <h3 class="text-center">RELEASDATE : ${detalils.releaseDate ? detalils.releaseDate : 'NOT AVLAVAl'}</h3>
       </div>
     </div>
   </div>
