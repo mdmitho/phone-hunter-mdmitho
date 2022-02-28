@@ -1,7 +1,17 @@
+const unknownPhone =(idName,displayBlock)  =>{
+    document.getElementById(idName).style.display= displayBlock
+}
+
 const InputValue = () => {
     const searchInput = document.getElementById('search-input').value
-    searchBtn(searchInput)
-    document.getElementById('search-input').value=''
+    if(searchInput == ''){
+        unknownPhone('scarch-phone-name','block')
+    }
+    else{
+        searchBtn(searchInput)
+        document.getElementById('search-input').value=''
+    }
+
 }
 const searchBtn = (searchText) =>{
     // const searchBtn = document.getElementById('search-btn')
@@ -10,30 +20,39 @@ const searchBtn = (searchText) =>{
     fetch(url)
     .then(res => res.json())
     .then(phone => displayPhone(phone.data))
+
+    unknownPhone('scarch-phone-name','none')
+    unknownPhone('no-phone','none')
  
 }
+
 const displayPhone = phones => {
-    console.log(phones)
     const cardContainer = document.getElementById('card-container')
-    cardContainer.textContent=''
- phones?.forEach(phone => {
+    cardContainer.innerHTML='';
+if(phones.length==0){
+    unknownPhone('no-phone','block')
+}
+else{
+    phones?.forEach(phone => {
  
-    const div = document.createElement('div')
-   
-    div.innerHTML = `
-    <div class="col">
-    <div class="card">
-      <img src="${phone.image}" class="card-img-top w-50 mx-auto">
-      <div class="card-body">
-        <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
-        <p class="card-text">Brand: ${phone.brand}</p>
-        <button onclick="loadPhoneDetail('${phone.slug}')" type="button" class="btn btn-primary mx-auto">DETAIL</button>
+        const div = document.createElement('div')
+       
+        div.innerHTML = `
+        <div class="col">
+        <div class="card">
+          <img src="${phone.image}" class="card-img-top w-50 mx-auto">
+          <div class="card-body">
+            <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
+            <p class="card-text">Brand: ${phone.brand}</p>
+            <button onclick="loadPhoneDetail('${phone.slug}')" type="button" class="btn btn-primary mx-auto">DETAIL</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  `
-  cardContainer.appendChild(div)
- });
+      `
+      cardContainer.appendChild(div)
+     });
+}
+
  
 }
 
@@ -48,10 +67,10 @@ const loadPhoneDetail = idName =>{
 const displayPhoneDetail = detalils=> {
     const detailContainer = document.getElementById('detail-container')
     detailContainer.textContent = ''
-    console.log(detalils)
+    console.log(detalils.releaseDate)
      const sensors = (detalils.mainFeatures.sensors)
     const others = (detalils.others)
-console.log(others)
+
 const div= document.createElement('div') 
     div.innerHTML = `
 
@@ -70,6 +89,7 @@ const div= document.createElement('div')
        USB  : ${others.USB}<br>
        WLAN : ${others.WLAN}
         </p>
+        <h3 class="text-center">RELEASDATE : ${detalils.releaseDate ? detalils.releaseDate : 'NOT AVLAVAL'}</h3>
       </div>
     </div>
   </div>
