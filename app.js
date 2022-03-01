@@ -1,4 +1,4 @@
-//reer messeage
+//error messeage
 const errorMessage =(idName,displayBlock)  =>{
     document.getElementById(idName).style.display= displayBlock
 }
@@ -47,7 +47,7 @@ else{
           <div class="card-body">
             <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
             <p class="card-text">Brand: ${phone.brand}</p>
-            <button onclick="loadPhoneDetail('${phone.slug}')" type="button" class="btn btn-primary mx-auto">DETAIL</button>
+            <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-primary mx-auto">DETAIL</button>
           </div>
         </div>
       </div>
@@ -79,12 +79,13 @@ const div= document.createElement('div')
 
     <div class="col">
     <div class="card w-50 mx-auto">
-    <img src="${detalils.image}" class="card-img-top w-50 mx-auto">
+    <img src="${detalils.image}" class="card-img-top w-50 mx-auto mt-3">
       <div class="card-body">
       <h3 class="text-center">SENSORS</h3>
       <p class="text-center">${sensors[0]}<br>${sensors[1]}<br>${sensors[2]}<br>${sensors[3]}<br>${sensors[4]}<br>${sensors[5]}</p>
       <h3 class="text-center">OTHERS</h3>
-      <p class="text-center">Bluetooth : ${others.Bluetooth}<br>
+      <p class="text-center">
+      Bluetooth : ${others.Bluetooth}<br>
        GPS : ${others.GPS}<br>
        NFC: ${others.NFC}<br>
        Radio : ${others.Radio}<br>
