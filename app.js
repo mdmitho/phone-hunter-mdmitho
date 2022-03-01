@@ -67,6 +67,8 @@ const loadPhoneDetail = idName =>{
 }
 //desplay phone detail content
 const displayPhoneDetail = detalils=> {
+  window.scrollTo(0, 0);
+
     const detailContainer = document.getElementById('detail-container')
     detailContainer.textContent = ''
     console.log(detalils.releaseDate)
