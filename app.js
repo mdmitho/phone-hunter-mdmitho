@@ -26,6 +26,7 @@ const searchBtn = (searchText) =>{
 
     errorMessage('scarch-phone-name','none')
     errorMessage('no-phone','none')
+    document.getElementById('detail-container').textContent=''
  
 }
 //show display content
